@@ -12,7 +12,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
-  <script type="text/babel" src="./main.js"></script>
+  <script type="text/babel">
+    class Greeting extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          name: '',
+        }
+      }
+      handleChange(event) {
+        this.setState({ name: event.target.value })
+      }
+
+      componentDidMount() {
+        alert('componentDidMount')
+      }
+      render() {
+        return (
+          <div>
+            <p>{this.state.name}</p>
+            <span>Say Hello to World : </span>
+            <input
+              type="text"
+              value={this.state.name}
+              onChange={e => this.handleChange(e)}
+            />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Greeting />, document.getElementById('root'))
+  </script>
 </body>
 
 </html>
